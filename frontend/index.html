@@ -1,0 +1,294 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Inventario</title>
+  <link rel="icon" type="images/png" href="/images/Fondo-claro-logo.webp">
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/css/bootstrap.min.css" rel="stylesheet"
+    integrity="sha384-rbsA2VBKQhggwzxH7pPCaAqO46MgnOM80zW1RWuH61DGLwZJEdK2Kadq2F9CUG65" crossorigin="anonymous">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.4/font/bootstrap-icons.css">
+  <link rel="stylesheet" href="css/inventario.css">
+  <link href="https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,300;0,800;1,400&display=swap"
+    rel="stylesheet">
+</head>
+
+<body>
+  <div class="d-flex " style="width: 20%;">
+    <div id="div2">
+      <!-- menu -->
+      <div class="">
+      
+        </a>
+        <ul class="navbar-nav  mb-2 mb-lg-0 d-flex justify-content-start ">
+          <li class="nav-item  d-flex gap-3 " style="display:flex; align-items: center;">
+            <i class="bi bi-person-square text-white"></i>
+            <a class="nav-link active texcolor3" id="btn-categories" aria-current="page" href="index.html" style="cursor:pointer;">List Categories</a>
+          </li>
+          <li class="nav-item  d-flex gap-3 " style="display:flex; align-items: center;">
+            <i class="bi bi-journal-plus text-white"></i>
+            <a class="nav-link texcolor3" type="submit" data-bs-toggle="modal"
+            data-bs-target="#registerCategory" href="#" style="cursor:pointer;">Create Category</a>
+          </li>
+          <li class="nav-item  d-flex gap-3 " style="display:flex; align-items: center;">
+            <i class="bi bi-person-square text-white"></i>
+            <a class="nav-link active texcolor3"  id="btn-products" aria-current="page" href="index.html" style="cursor:pointer;">List products</a>
+          </li>
+          <li class="nav-item d-flex gap-3">
+            <i class="bi bi-journal-plus text-white"></i>
+            <a class="nav-link texcolor3" type="submit" data-bs-toggle="modal"
+              data-bs-target="#registerProduct" href="#" style="cursor:pointer;">Create Product</a>
+          </li>
+          <li class="nav-item d-flex gap-3" style="display:flex; align-items: center;">
+            <i class="bi bi-person-circle text-white"></i>
+            <a class="nav-link texcolor3" id="btn-clients" href="#">List Clients</a>
+          </li>
+          <li class="nav-item d-flex gap-3" style="display:flex; align-items: center;">
+            <i class="bi bi-person-badge text-white"></i>
+            <a class="nav-link texcolor3" id="btn-employees" href="#">List Employees</a>
+          </li>
+          <li class="nav-item d-flex gap-3" style="display:flex; align-items: center;">
+            <i class="bi bi-receipt text-white"></i>
+            <a class="nav-link texcolor3" id="btn-invoices" href="#">List Invoices</a>
+          </li>          
+        
+          <li class="nav-item dropdown" style="cursor:pointer;">
+
+          </li>
+        
+        </ul>
+      </div>
+
+     
+    </div>
+  </div>
+
+<!-- Modal -->
+<div class="modal fade" id="registerCategory" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog modal-dialog-centered modal-dialog-scrollable">
+    <div class="modal-content">
+      <div class="modal-header color1">
+        <h1 class="modal-title fs-5 headerr" id="exampleModalLabel">Register New Category</h1>
+      </div>
+      <div class="modal-body">
+        <form id="formulario" class="row g-3"  method="POST">
+          <div class="col-md-12">
+            <label for="nombre" class="form-label headerr">Nombre</label>
+            <input type="text" class="form-control" id="nombre">
+          </div> 
+
+          <div class="col-md-12">
+            <label for="descripcion" class="form-label headerr">Descripcion</label>
+            <input type="text" class="form-control" id="descripcion">
+          </div> 
+
+          <div class="col-md-12">
+            <label for="imagen" class="form-label headerr">Imagen</label>
+            <input type="file" class="form-control" id="imagen">
+          </div> 
+
+          <div class="col-12">
+            <label for="tipoCategoria" class="form-label headerr">Tipo Categoria</label>
+            <select class="form-select" id="tipoCategoria">
+              <option value="">Select Type of Category</option>
+              <option value="Virtual">Virtual</option>
+              <option value="Fisica">Fisica</option>  
+            </select>
+          </div> 
+          
+      </div>
+      <div class="modal-footer ">
+        <button type="button" class="btn btn-secondary color3 border3 headerr" data-bs-dismiss="modal">Cerrar</button>
+        <button type="submit" class="btn color5 color-heder headerr" data-bs-toggle="modal"
+          data-bs-target="#exampleModal2">Enviar Registro</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- Modal para registrar productos -->
+<div class="modal fade" id="registerProduct" tabindex="-1" aria-labelledby="productModalLabel" aria-hidden="true">
+  <div class="modal-dialog modal-dialog-centered modal-dialog-scrollable">
+    <div class="modal-content">
+      <div class="modal-header color1">
+        <h1 class="modal-title fs-5 headerr" id="productModalLabel">Register New Product</h1>
+      </div>
+      <div class="modal-body">
+        <form id="productForm" class="row g-3" method="POST">
+          <div class="col-md-12">
+            <label for="productName" class="form-label headerr">Nombre del Producto</label>
+            <input type="text" class="form-control" id="productName">
+          </div>
+
+          <div class="col-md-12">
+            <label for="cantidadUnidad" class="form-label headerr">Cantidad por Unidad</label>
+            <input type="text" class="form-control" id="cantidadUnidad">
+          </div>
+
+          <div class="col-md-12">
+            <label for="precioUnitario" class="form-label headerr">Precio Unitario</label>
+            <input type="number" class="form-control" id="precioUnitario">
+          </div>
+
+          <div class="col-md-12">
+            <label for="stock" class="form-label headerr">Unidades en Stock</label>
+            <input type="number" class="form-control" id="stock">
+          </div>
+
+          <div class="col-12">
+            <label for="categoriaProducto" class="form-label headerr">Categoría</label>
+            <select class="form-select" id="categoriaProducto">
+              <option value="">Selecciona una Categoría</option>
+              <!-- Opciones se cargarán dinámicamente después -->
+            </select>
+          </div>
+        </form>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary color3 border3 headerr" data-bs-dismiss="modal">Cerrar</button>
+        <button type="submit" class="btn color5 color-heder headerr" form="productForm">Enviar Registro</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+  <!-- //////////////////////////////////////Coders Dynamic Table-->
+  <div  class="div2 alertaAlerta" style="background-color: #233249;">
+    <div class="sub-menu d-flex justify-content-between menu-cuenta " >
+
+      <div class="divcueta border-bottom ">
+        <img src="img/JuanAsencio.jpg" alt="" srcset="" class="cuenta2">
+        <div class="ps-2">
+          <h5 class="texcolor3">BBT Todo</h5>
+         
+        </div>
+      </div>
+      <div class="align-items-center d-flex gap-3 margin-rigth">
+        <a href=""><i class="bi bi-envelope text-white" style="font-size: 1.5rem; cursor:pointer "></i></a>
+        <a href=""><i class="bi bi-bell text-white " style="font-size: 1.5rem; cursor:pointer "></i></a>
+        <a href=""><i class="bi bi-person-square text-white" style="font-size: 1.5rem; cursor:pointer "></i></a>
+      </div>
+    </div>
+    
+        <!-- DINAMYC TABLE -->
+        <div id="view-categories" class="dynamic-view">
+          <table class="table">
+            <thead class="menu-busqueda">
+              <tr>
+                <th>ID</th>
+                <th>Nombre</th>
+                <th>Descripción</th>
+                <th>Imagen</th>
+                <th>Detalles</th>
+                <th>Editar</th>
+                <th>Borrar</th>
+              </tr>
+            </thead>
+            <tbody class="table-group-divider Category-table">
+              <!-- Categorías renderizadas aquí por inventario.js -->
+            </tbody>
+          </table>
+        </div>
+        
+        <div id="view-products" class="dynamic-view" style="display:none;">
+          <table class="table">
+            <thead class="menu-busqueda">
+              <tr>
+                <th>ID</th>
+                <th>Nombre</th>
+                <th>Cantidad</th>
+                <th>Precio</th>
+                <th>Stock</th>
+                <th>Categoría</th>
+                <th>Detalles</th>
+                <th>Editar</th>
+                <th>Borrar</th>
+              </tr>
+            </thead>
+            <tbody class="table-group-divider products-table">
+              <!-- Productos renderizados aquí por productos.js -->
+            </tbody>
+          </table>
+        </div>
+
+        <div id="view-clients" class="dynamic-view" style="display:none;">
+          <table class="table">
+            <thead class="menu-busqueda">
+              <tr>
+                <th>ID</th>
+                <th>Compañía</th>
+                <th>Contacto</th>
+                <th>Ciudad</th>
+                <th>País</th>
+                <th>Teléfono</th>
+                <th>Detalles</th>
+                <th>Editar</th>
+                <th>Borrar</th>
+              </tr>
+            </thead>
+            <tbody class="clients-table table-group-divider">
+            </tbody>
+          </table>
+        </div>
+
+        <div id="view-employees" class="dynamic-view" style="display:none;">
+          <table class="table">
+            <thead class="menu-busqueda">
+              <tr>
+                <th>ID</th>
+                <th>Nombre</th>
+                <th>Cargo</th>
+                <th>Ciudad</th>
+                <th>País</th>
+                <th>Teléfono</th>
+                <th>Detalles</th>
+                <th>Editar</th>
+                <th>Borrar</th>
+              </tr>
+            </thead>
+            <tbody class="employees-table table-group-divider">
+            </tbody>
+          </table>
+        </div>
+        
+        <div id="view-invoices" class="dynamic-view" style="display:none;">
+          <table class="table">
+            <thead class="menu-busqueda">
+              <tr>
+                <th>ID</th>
+                <th>Cliente</th>
+                <th>Empleado</th>
+                <th>Fecha</th>
+                <th>Total</th>
+                <th>Detalles</th>
+              </tr>
+            </thead>
+            <tbody class="invoices-table table-group-divider">
+            </tbody>
+          </table>
+        </div>
+        
+        
+        <footer class="w- d-flex align-items justify-content-center">
+          <p class="fs-5 px-2 pt-2">Designed by Developers UTS</p>
+        </footer>
+  </div>
+
+  <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.6/dist/umd/popper.min.js"
+    integrity="sha384-oBqDVmMz9ATKxIep9tiCxS/Z9fNfEXiDAYTujMAeBAsjFuCZSmKbSSUnQlmh/jp3"
+    crossorigin="anonymous"></script>
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.min.js"
+    integrity="sha384-cuYeSxntonz0PPNlHhBs68uyIAVpIIOZZ5JqeqvYYIcEL727kskC66kF92t6Xl2V"
+    crossorigin="anonymous"></script>
+  <script src="js/navigation.js" type="module"></script>
+    <script src="js/inventario.js" type="module"></script>
+    <script src="js/productos.js" type="module"></script>
+    <script src="js/clientes.js" type="module"></script>
+    <script src="js/empleados.js" type="module"></script>
+    <script src="js/facturas.js" type="module"></script>
+</body>
+
+</html>
