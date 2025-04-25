@@ -16,49 +16,40 @@
 </head>
 
 <body>
-  <div class="d-flex " style="width: 20%;">
+  <div class="wrapper d-flex " style="width: 20%;">
     <div id="div2">
       <!-- menu -->
       <div class="">
-      
-        </a>
-        <ul class="navbar-nav  mb-2 mb-lg-0 d-flex justify-content-start ">
-          <li class="nav-item  d-flex gap-3 " style="display:flex; align-items: center;">
-            <i class="bi bi-person-square text-white"></i>
-            <a class="nav-link active texcolor3" id="btn-categories" aria-current="page" href="index.html" style="cursor:pointer;">List Categories</a>
-          </li>
-          <li class="nav-item  d-flex gap-3 " style="display:flex; align-items: center;">
-            <i class="bi bi-journal-plus text-white"></i>
-            <a class="nav-link texcolor3" type="submit" data-bs-toggle="modal"
-            data-bs-target="#registerCategory" href="#" style="cursor:pointer;">Create Category</a>
-          </li>
-          <li class="nav-item  d-flex gap-3 " style="display:flex; align-items: center;">
-            <i class="bi bi-person-square text-white"></i>
-            <a class="nav-link active texcolor3"  id="btn-products" aria-current="page" href="index.html" style="cursor:pointer;">List products</a>
-          </li>
-          <li class="nav-item d-flex gap-3">
-            <i class="bi bi-journal-plus text-white"></i>
-            <a class="nav-link texcolor3" type="submit" data-bs-toggle="modal"
-              data-bs-target="#registerProduct" href="#" style="cursor:pointer;">Create Product</a>
-          </li>
-          <li class="nav-item d-flex gap-3" style="display:flex; align-items: center;">
-            <i class="bi bi-person-circle text-white"></i>
-            <a class="nav-link texcolor3" id="btn-clients" href="#">List Clients</a>
-          </li>
-          <li class="nav-item d-flex gap-3" style="display:flex; align-items: center;">
-            <i class="bi bi-person-badge text-white"></i>
-            <a class="nav-link texcolor3" id="btn-employees" href="#">List Employees</a>
-          </li>
-          <li class="nav-item d-flex gap-3" style="display:flex; align-items: center;">
-            <i class="bi bi-receipt text-white"></i>
-            <a class="nav-link texcolor3" id="btn-invoices" href="#">List Invoices</a>
-          </li>          
-        
-          <li class="nav-item dropdown" style="cursor:pointer;">
-
-          </li>
-        
-        </ul>
+        <ul class="navbar-nav d-flex flex-column gap-3 mt-4">
+        <li class="nav-item d-flex align-items-center menu-item">
+          <i class="bi bi-person-square me-3 icono-menu"></i>
+          <a class="nav-link active" id="btn-categories" href="index.html">List Categories</a>
+        </li>
+        <!-- <li class="nav-item d-flex align-items-center menu-item">
+          <i class="bi bi-journal-plus me-3 icono-menu"></i>
+          <a class="nav-link" data-bs-toggle="modal" data-bs-target="#registerCategory" href="#">Create Category</a>
+        </li> -->
+        <li class="nav-item d-flex align-items-center menu-item">
+          <i class="bi bi-box me-3 icono-menu"></i>
+          <a class="nav-link" id="btn-products" href="index.html">List Products</a>
+        </li>
+        <!-- <li class="nav-item d-flex align-items-center menu-item">
+          <i class="bi bi-journal-plus me-3 icono-menu"></i>
+          <a class="nav-link" data-bs-toggle="modal" data-bs-target="#registerProduct" href="#">Create Product</a>
+        </li> -->
+        <li class="nav-item d-flex align-items-center menu-item">
+          <i class="bi bi-person-circle me-3 icono-menu"></i>
+          <a class="nav-link" id="btn-clients" href="#">List Clients</a>
+        </li>
+        <li class="nav-item d-flex align-items-center menu-item">
+          <i class="bi bi-person-badge me-3 icono-menu"></i>
+          <a class="nav-link" id="btn-employees" href="#">List Employees</a>
+        </li>
+        <li class="nav-item d-flex align-items-center menu-item">
+          <i class="bi bi-receipt me-3 icono-menu"></i>
+          <a class="nav-link" id="btn-invoices" href="#">List Invoices</a>
+        </li>
+      </ul>
       </div>
 
      
@@ -156,13 +147,13 @@
 
 
   <!-- //////////////////////////////////////Coders Dynamic Table-->
-  <div  class="div2 alertaAlerta" style="background-color: #233249;">
+  <div  class="div2 alertaAlerta" style="background-color: #000000;">
     <div class="sub-menu d-flex justify-content-between menu-cuenta " >
 
-      <div class="divcueta border-bottom ">
-        <img src="img/JuanAsencio.jpg" alt="" srcset="" class="cuenta2">
+      <div class="divcueta d-flex align-items-center gap-3 ">
+        <img src="img/logo.jpg" alt="logo" srcset="" class="cuenta2 logo-borde">
         <div class="ps-2">
-          <h5 class="texcolor3">BBT Todo</h5>
+          <h5 class="project-title mb-0">BBT Todo</h5>
          
         </div>
       </div>
@@ -183,7 +174,6 @@
                 <th>Descripción</th>
                 <th>Imagen</th>
                 <th>Detalles</th>
-                <th>Editar</th>
                 <th>Borrar</th>
               </tr>
             </thead>
@@ -204,7 +194,6 @@
                 <th>Stock</th>
                 <th>Categoría</th>
                 <th>Detalles</th>
-                <th>Editar</th>
                 <th>Borrar</th>
               </tr>
             </thead>
@@ -225,7 +214,6 @@
                 <th>País</th>
                 <th>Teléfono</th>
                 <th>Detalles</th>
-                <th>Editar</th>
                 <th>Borrar</th>
               </tr>
             </thead>
@@ -245,7 +233,6 @@
                 <th>País</th>
                 <th>Teléfono</th>
                 <th>Detalles</th>
-                <th>Editar</th>
                 <th>Borrar</th>
               </tr>
             </thead>
@@ -263,7 +250,9 @@
                 <th>Empleado</th>
                 <th>Fecha</th>
                 <th>Total</th>
+                <th>Pais</th>
                 <th>Detalles</th>
+                <th>Borrar</th>
               </tr>
             </thead>
             <tbody class="invoices-table table-group-divider">
@@ -284,7 +273,7 @@
     integrity="sha384-cuYeSxntonz0PPNlHhBs68uyIAVpIIOZZ5JqeqvYYIcEL727kskC66kF92t6Xl2V"
     crossorigin="anonymous"></script>
   <script src="js/navigation.js" type="module"></script>
-    <script src="js/inventario.js" type="module"></script>
+    <script src="js/categorias.js" type="module"></script>
     <script src="js/productos.js" type="module"></script>
     <script src="js/clientes.js" type="module"></script>
     <script src="js/empleados.js" type="module"></script>

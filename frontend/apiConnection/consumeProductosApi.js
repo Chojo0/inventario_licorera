@@ -9,3 +9,24 @@ export const obtainProducts = async () => {
     console.error("Error al obtener productos", error);
   }
 };
+
+export const getProductById = async (id) => {
+  try {
+    const res = await fetch(`${url}/${id}`);
+    return await res.json();
+  } catch (error) {
+    console.error("Error al obtener el producto:", error);
+  }
+};
+
+export const deleteProductById = async (id) => {
+  try {
+    const res = await fetch(`${url}/${id}`, {
+      method: "DELETE"
+    });
+    return await res.json();
+  } catch (error) {
+    console.error("Error al eliminar el producto:", error);
+  }
+};
+

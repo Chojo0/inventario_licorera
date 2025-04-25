@@ -9,3 +9,23 @@ export const obtainClients = async () => {
     console.error("Error al obtener clientes", error);
   }
 };
+
+export const deleteClientById = async (id) => {
+  try {
+    const response = await fetch(`${url}/${id}`, {
+      method: "DELETE"
+    });
+    return await response.json();
+  } catch (error) {
+    console.error("Error al eliminar cliente:", error);
+  }
+};
+
+export const getClientById = async (id) => {
+  try {
+    const response = await fetch(`${url}/${id}`);
+    return await response.json();
+  } catch (error) {
+    console.error("Error al obtener cliente:", error);
+  }
+};

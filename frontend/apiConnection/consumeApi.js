@@ -9,3 +9,24 @@ export const obtainCategories = async () => {
     console.log(error);
   }
 };
+
+export const deleteCategoryById = async (id) => {
+  try {
+    const response = await fetch(`${url}/${id}`, {
+      method: "DELETE"
+    });
+    return await response.json();
+  } catch (error) {
+    console.error("Error al eliminar la categoría:", error);
+  }
+};
+
+export const getCategoryById = async (id) => {
+  try {
+    const response = await fetch(`${url}/${id}`);
+    const data = await response.json();
+    return data;
+  } catch (error) {
+    console.error("Error al obtener la categoría:", error);
+  }
+};

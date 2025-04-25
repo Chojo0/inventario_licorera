@@ -4,5 +4,9 @@ import { methodHTTP as empleadosController } from '../controllers/empleados.cont
 const router = Router();
 
 router.get('/', empleadosController.getEmpleados);
+router.get('/:id', empleadosController.getEmpleados);
+router.post('/', empleadosController.postEmpleados);
+router.put('/:id', empleadosController.updateEmpleados);
+router.delete('/:id', empleadosController.deleteEmpleados);
 
 export default router;

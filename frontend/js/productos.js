@@ -1,6 +1,8 @@
-import { obtainProducts } from "./../apiConnection/consumeProductosApi.js";
-import { obtainCategories } from "./../apiConnection/consumeApi.js";
-import { createProduct } from "./../apiConnection/createProduct.js";
+import {
+  obtainProducts,
+  getProductById,
+  deleteProductById,
+} from "./../apiConnection/consumeProductosApi.js";
 
 document.addEventListener("DOMContentLoaded", async () => {
   await getProducts();
@@ -10,6 +12,8 @@ document.addEventListener("DOMContentLoaded", async () => {
 async function getProducts() {
   const products = await obtainProducts();
   const container = document.querySelector(".products-table");
+  container.innerHTML = "";
+
   products.forEach((producto) => {
     const {
       ProductoID,
@@ -17,7 +21,7 @@ async function getProducts() {
       CantidadPorUnidad,
       PrecioUnitario,
       UnidadesStock,
-      CategoriaNombre
+      CategoriaNombre,
     } = producto;
 
     const row = document.createElement("tr");
@@ -28,56 +32,82 @@ async function getProducts() {
       <td>$${PrecioUnitario.toLocaleString()}</td>
       <td>${UnidadesStock}</td>
       <td>${CategoriaNombre}</td>
-      <td><button class="btn color3">Detalles</button></td>
-      <td><button class="btn color5">Editar</button></td>
-      <td><button class="btn color2">Borrar</button></td>
+      <td><button class="btn color3 detail-product-btn" data-id="${ProductoID}">Detalles</button></td>
+      <td><button class="btn color2 delete-product-btn" data-id="${ProductoID}">Borrar</button></td>
     `;
     container.appendChild(row);
   });
+
+  addProductDetailListeners();
+  addProductDeleteListeners();
 }
 
-async function fillCategoryOptions() {
-  const categorias = await obtainCategories();
-  const select = document.getElementById("categoriaProducto");
+function addProductDetailListeners() {
+  const buttons = document.querySelectorAll(".detail-product-btn");
+  buttons.forEach((button) => {
+    button.addEventListener("click", async () => {
+      const id = button.dataset.id;
 
-  categorias.forEach(categoria => {
-    const option = document.createElement("option");
-    option.value = categoria.CategoriaID;
-    option.textContent = categoria.CategoriaNombre;
-    select.appendChild(option);
+      // Elimina modal anterior si existe
+      const existingModal = document.getElementById("productDetailModal");
+      if (existingModal) existingModal.remove();
+
+      const data = await getProductById(id);
+      if (data && data.length > 0) {
+        const p = data[0];
+        const detailHtml = `
+          <div class="modal fade" id="productDetailModal" tabindex="-1" aria-labelledby="productDetailLabel" aria-hidden="true">
+            <div class="modal-dialog modal-dialog-centered">
+              <div class="modal-content">
+                <div class="modal-header color1">
+                  <h5 class="modal-title headerr" id="productDetailLabel">Detalles del Producto</h5>
+                  <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                  <p><strong>ID:</strong> ${p.ProductoID}</p>
+                  <p><strong>Nombre:</strong> ${p.ProductoNombre}</p>
+                  <p><strong>Cantidad por unidad:</strong> ${
+                    p.CantidadPorUnidad
+                  }</p>
+                  <p><strong>Precio unitario:</strong> $${p.PrecioUnitario.toLocaleString()}</p>
+                  <p><strong>Unidades en stock:</strong> ${p.UnidadesStock}</p>
+                  <p><strong>Categoría:</strong> ${
+                    p.CategoriaNombre || "Sin categoría"
+                  }</p>
+                </div>
+              </div>
+            </div>
+          </div>
+        `;
+        document.body.insertAdjacentHTML("beforeend", detailHtml);
+        const modal = new bootstrap.Modal(
+          document.getElementById("productDetailModal")
+        );
+        modal.show();
+
+        document
+          .getElementById("productDetailModal")
+          .addEventListener("hidden.bs.modal", () => {
+            document.getElementById("productDetailModal").remove();
+            const backdrop = document.querySelector(".modal-backdrop");
+            if (backdrop) backdrop.remove(); // Soluciona pantalla negra
+          });
+      }
+    });
   });
 }
 
-  const productForm = document.getElementById("productForm");
-
-  productForm.addEventListener("submit", async (e) => {
-    e.preventDefault();
-
-    const ProductoNombre = document.getElementById("productName").value;
-    const CantidadPorUnidad = document.getElementById("cantidadUnidad").value;
-    const PrecioUnitario = parseFloat(document.getElementById("precioUnitario").value);
-    const UnidadesStock = parseInt(document.getElementById("stock").value);
-    const CategoriaID = parseInt(document.getElementById("categoriaProducto").value);
-
-    const producto = {
-      ProductoNombre,
-      CategoriaID,
-      CantidadPorUnidad,
-      PrecioUnitario,
-      UnidadesStock,
-      ProveedorID: null,
-      UnidadesPedidas: 0,
-      NivelReorden: 0,
-      Discontinuado: 0,
-    };
-
-    await createProduct(producto);
-
-    document.querySelector(".products-table").innerHTML = "";
-    await getProducts();
-
-    const modal = bootstrap.Modal.getInstance(document.getElementById("registerProduct"));
-    modal.hide();
-
-    productForm.reset();
+function addProductDeleteListeners() {
+  const buttons = document.querySelectorAll(".delete-product-btn");
+  buttons.forEach((button) => {
+    button.addEventListener("click", async () => {
+      const id = button.dataset.id;
+      const confirmed = confirm("¿Deseas eliminar este producto?");
+      if (confirmed) {
+        await deleteProductById(id);
+        document.querySelector(".products-table").innerHTML = "";
+        await getProducts();
+      }
+    });
   });
+}
